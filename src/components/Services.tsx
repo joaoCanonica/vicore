@@ -134,7 +134,7 @@ export function Services() {
             <span className="block overflow-hidden">
               <span
                 data-reveal="line"
-                className="text-gradient block text-[clamp(2.2rem,6.5vw,4.5rem)]"
+                className="block text-[clamp(2.2rem,6.5vw,4.5rem)] text-accent"
                 style={{ animationDelay: "0.1s" }}
               >
                 precisa pra vender
@@ -163,7 +163,7 @@ export function Services() {
               style={{ transitionDelay: `${i * 0.08}s` }}
             >
               <div className="flex items-center justify-between">
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--grad-1)] via-[var(--grad-2)] to-[var(--grad-3)]">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-foreground">
                   <Icon className="h-5 w-5 text-background" strokeWidth={1.75} />
                 </span>
                 <span className="text-[11px] uppercase tracking-[0.3em] text-muted-foreground">

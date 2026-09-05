@@ -132,16 +132,16 @@ export function Testimonials() {
             >
               <figure className="card-edge flex h-full flex-col justify-between rounded-3xl p-7 md:p-8">
                 <Quote
-                  className="h-7 w-7 shrink-0 text-[var(--grad-2)]"
+                  className="h-7 w-7 shrink-0 text-foreground"
                   strokeWidth={1.5}
                   fill="currentColor"
-                  fillOpacity={0.15}
+                  fillOpacity={0.12}
                 />
                 <blockquote className="mt-6 flex-1 text-[14.5px] leading-relaxed text-foreground">
                   "{t.quote}"
                 </blockquote>
                 <figcaption className="mt-7 flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[var(--grad-1)] via-[var(--grad-2)] to-[var(--grad-3)] text-[12px] font-bold text-background">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground text-[12px] font-bold text-background">
                     {initials(t.name)}
                   </span>
                   <span>

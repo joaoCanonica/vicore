@@ -18,8 +18,8 @@ export function FinalCta() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.18] blur-[130px]"
-        style={{ background: "radial-gradient(circle, var(--grad-2), transparent 70%)" }}
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.08] blur-[130px]"
+        style={{ background: "radial-gradient(circle, #ffffff, transparent 70%)" }}
       />
 
       <p className="eyebrow reveal-card mb-10" data-reveal="card">
@@ -47,7 +47,7 @@ export function FinalCta() {
         <span className="block overflow-hidden">
           <span
             data-reveal="line"
-            className="text-gradient block text-[clamp(2rem,6vw,5rem)]"
+            className="block text-[clamp(2rem,6vw,5rem)] text-accent"
             style={{ animationDelay: "0.2s" }}
           >
             em 90 dias.
@@ -73,7 +73,7 @@ export function FinalCta() {
           href={DIAGNOSTIC_FORM_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-grad group inline-flex w-full items-center justify-center gap-2 rounded-full px-10 py-5 text-[13px] font-semibold text-background sm:w-auto"
+          className="btn-solid group inline-flex w-full items-center justify-center gap-2 rounded-full px-10 py-5 text-[13px] font-semibold sm:w-auto"
         >
           Quero meu diagnóstico grátis
           <ArrowUpRight

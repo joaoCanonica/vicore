@@ -5,9 +5,9 @@
 
 /*
  * VICORE — design system
- * Marketing de conteúdo tratado como produto premium.
- * Preto quente dominante, off-white, gradiente-assinatura
- * (magenta → laranja → âmbar) usado como acento raro e intencional.
+ * Fiel à marca real: wordmark preto e branco, sem cor nenhuma.
+ * Preto absoluto dominante, branco puro, off-white como único
+ * "acento" — a mesma lógica bicolor de headline que a Tahon usa.
  */
 
 @theme inline {
@@ -18,7 +18,7 @@
   --radius-2xl: calc(var(--radius) + 10px);
   --radius-3xl: calc(var(--radius) + 18px);
 
-  --font-display: "Unbounded", "Arial Narrow", sans-serif;
+  --font-display: "Poppins", "Arial Narrow", sans-serif;
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
   --color-background: var(--background);
@@ -31,31 +31,23 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-border: var(--border);
   --color-ring: var(--ring);
-
-  --color-grad-1: var(--grad-1);
-  --color-grad-2: var(--grad-2);
-  --color-grad-3: var(--grad-3);
 }
 
 :root {
   --radius: 0.875rem;
 
-  /* #0A0A0B — preto quente da marca */
-  --background: oklch(0.145 0.002 30);
-  --foreground: oklch(0.97 0.006 80);
-  --card: oklch(0.19 0.004 30);
-  --card-foreground: oklch(0.97 0.006 80);
-  --muted: oklch(0.24 0.004 30);
-  --muted-foreground: oklch(0.635 0.008 60);
-  --accent: oklch(0.97 0.006 80);
-  --accent-foreground: oklch(0.145 0.002 30);
+  /* #0A0A0A — preto absoluto da marca */
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.19 0 0);
+  --card-foreground: oklch(1 0 0);
+  --muted: oklch(0.24 0 0);
+  --muted-foreground: oklch(0.63 0 0);
+  /* off-white — segunda cor do tratamento bicolor de headlines */
+  --accent: oklch(0.915 0.004 95);
+  --accent-foreground: oklch(0.145 0 0);
   --border: oklch(1 0 0 / 10%);
-  --ring: oklch(0.75 0.14 40);
-
-  /* gradiente-assinatura Vicore */
-  --grad-1: #ff3d77;
-  --grad-2: #ff7a3d;
-  --grad-3: #ffc93d;
+  --ring: oklch(0.915 0.004 95);
 }
 
 @layer base {
@@ -80,8 +72,8 @@
   }
 
   ::selection {
-    background: var(--grad-2);
-    color: oklch(0.145 0.002 30);
+    background: var(--color-foreground);
+    color: var(--color-background);
   }
 }
 
@@ -156,12 +148,6 @@
   }
 }
 
-@keyframes spin-slow {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes pulse-ring {
   0% {
     transform: scale(1);
@@ -204,10 +190,6 @@
   animation: scroll-cue 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
-@utility spin-slow {
-  animation: spin-slow 14s linear infinite;
-}
-
 @utility marquee-track {
   animation: marquee 34s linear infinite;
 }
@@ -235,7 +217,7 @@
     bottom: -5px;
     height: 1.5px;
     width: 100%;
-    background: linear-gradient(90deg, var(--grad-1), var(--grad-2), var(--grad-3));
+    background: var(--color-foreground);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -246,25 +228,16 @@
   }
 }
 
-@utility text-gradient {
-  background: linear-gradient(100deg, var(--grad-1) 0%, var(--grad-2) 50%, var(--grad-3) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
 /* ------------------------------- botão-assinatura ------------------------------ */
+/* Sólido branco / texto preto — o único "peso" forte do sistema,
+   reservado pro CTA principal. Tudo mais é contorno (btn-ghost). */
 
-@utility btn-grad {
+@utility btn-solid {
   position: relative;
-  isolation: isolate;
-  background: linear-gradient(100deg, var(--grad-1), var(--grad-2), var(--grad-3));
-  background-size: 180% 180%;
-  transition:
-    background-position 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--color-foreground);
+  color: var(--color-background);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   &:hover {
-    background-position: 100% 50%;
     transform: translateY(-2px);
   }
 }
@@ -283,7 +256,7 @@
   }
 }
 
-/* borda com gradiente sutil — usada nos cards premium */
+/* card premium — sobe e clareia a borda no hover, sem cor */
 @utility card-edge {
   position: relative;
   background: color-mix(in oklab, var(--color-card) 70%, transparent);
@@ -293,9 +266,9 @@
     transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   &:hover {
-    border-color: color-mix(in oklab, var(--grad-2) 45%, transparent);
+    border-color: color-mix(in oklab, var(--color-foreground) 35%, transparent);
     transform: translateY(-4px);
-    box-shadow: 0 24px 60px -24px color-mix(in oklab, var(--grad-1) 35%, transparent);
+    box-shadow: 0 24px 60px -24px rgb(0 0 0 / 60%);
   }
 }
 
@@ -349,10 +322,8 @@
   }
 
   .cursor-ring-active .cursor-ring-inner {
-    transform: scale(1.6);
-    border-color: transparent;
-    background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3));
-    opacity: 0.85;
+    transform: scale(1.7);
+    background: color-mix(in oklab, var(--color-foreground) 14%, transparent);
   }
 }
 
@@ -396,7 +367,7 @@
   inset: 0;
   z-index: -1;
   border-radius: 9999px;
-  background: linear-gradient(120deg, var(--grad-1), var(--grad-2), var(--grad-3));
+  background: var(--color-foreground);
   animation: pulse-ring 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 

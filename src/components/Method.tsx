@@ -64,7 +64,7 @@ export function Method() {
           <span className="block overflow-hidden">
             <span
               data-reveal="line"
-              className="text-gradient block text-[clamp(2.2rem,6.5vw,4.5rem)]"
+              className="block text-[clamp(2.2rem,6.5vw,4.5rem)] text-accent"
               style={{ animationDelay: "0.1s" }}
             >
               dos 90 dias
@@ -76,7 +76,7 @@ export function Method() {
       <div className="relative mx-auto max-w-3xl">
         <div
           aria-hidden="true"
-          className="absolute left-[27px] top-2 bottom-2 hidden w-px bg-gradient-to-b from-[var(--grad-1)] via-[var(--grad-2)] to-[var(--grad-3)] opacity-40 sm:block"
+          className="absolute left-[27px] top-2 bottom-2 hidden w-px bg-foreground/25 sm:block"
         />
         <ol className="space-y-10 sm:space-y-14">
           {STEPS.map((step, i) => (

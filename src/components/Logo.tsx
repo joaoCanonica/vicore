@@ -1,30 +1,29 @@
 /**
- * Marca Vicore — anel-gradiente (eco do perfil @_vicore) + wordmark.
- * `mark` sozinho é usado no preloader; `full` combina anel + texto no header.
+ * Marca Vicore — wordmark preto/branco fiel ao logotipo oficial.
+ * `LogoMark` é o monograma usado no favicon e no preloader;
+ * `Logo` é o wordmark completo usado no header e no footer.
  */
-export function LogoMark({ className = "h-8 w-8" }: { className?: string }) {
+export function LogoMark({ size = 32, className = "" }: { size?: number; className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" fill="none" className={className} aria-hidden="true">
-      <defs>
-        <linearGradient id="vicore-ring" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#FF3D77" />
-          <stop offset="0.5" stopColor="#FF7A3D" />
-          <stop offset="1" stopColor="#FFC93D" />
-        </linearGradient>
-      </defs>
-      <circle cx="32" cy="32" r="27" stroke="url(#vicore-ring)" strokeWidth="6" />
-      <circle cx="32" cy="32" r="9" fill="url(#vicore-ring)" />
-    </svg>
+    <span
+      className={`inline-flex shrink-0 items-center justify-center rounded-[28%] bg-foreground font-display font-bold lowercase text-background ${className}`}
+      aria-hidden="true"
+      style={{ width: size, height: size, fontSize: size * 0.56 }}
+    >
+      v
+    </span>
   );
 }
 
 export function Logo({ className = "" }: { className?: string }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <LogoMark className="h-6 w-6 shrink-0 md:h-7 md:w-7" />
-      <span className="font-display text-[17px] font-bold lowercase tracking-tight text-foreground md:text-lg">
+    <span className={`inline-flex items-baseline gap-0.5 ${className}`}>
+      <span className="font-display text-[19px] font-semibold lowercase tracking-tight text-foreground md:text-[21px]">
         vicore
       </span>
+      <sup className="text-[8px] font-medium tracking-normal text-muted-foreground">
+        TM
+      </sup>
     </span>
   );
 }

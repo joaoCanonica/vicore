@@ -42,7 +42,7 @@ export function Preloader({ onReveal }: { onReveal: () => void }) {
         }`}
         style={{ transitionDuration: `${FADE_OUT_DURATION_MS}ms` }}
       >
-        <LogoMark className="preloader-mark spin-slow h-12 w-12 select-none md:h-14 md:w-14" />
+        <LogoMark size={56} className="preloader-mark select-none" />
       </div>
     </>
   );

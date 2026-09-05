@@ -1,54 +1,38 @@
 import { useEffect, useRef } from "react";
 import { PhoneMock } from "./PhoneMock";
 
+const TONE_CYCLE = ["a", "b", "c"] as const;
+
 const CASES = [
   {
     niche: "Odontologia",
     caption: "POV: a Dra. estende o braço na altura da câmera, estilo selfie, e confia. 🙏",
     goal: "Meta: +200% de alcance em 90 dias",
-    from: "#FF3D77",
-    via: "#FF6E5C",
-    to: "#FFC93D",
   },
   {
     niche: "Advocacia",
     caption: "Autoridade não se compra. Se constrói vídeo a vídeo. ⚖️",
     goal: "Meta: virar referência no nicho",
-    from: "#3D4EFF",
-    via: "#8A3DFF",
-    to: "#FF3D9E",
   },
   {
     niche: "Diretoria executiva",
     caption: "POV: leva a cadeira ali no meio, fica parado e confia. ✨",
     goal: "Meta: personal branding do fundador",
-    from: "#FF7A3D",
-    via: "#FF3D77",
-    to: "#8A3DFF",
   },
   {
     niche: "Operações & indústria",
     caption: "Bastidor vira conteúdo. Rotina vira prova social.",
     goal: "Meta: humanizar a operação",
-    from: "#2FD3B3",
-    via: "#3DAEFF",
-    to: "#8A3DFF",
   },
   {
     niche: "Estética & bem-estar",
     caption: "GRWM: o conteúdo pronto antes mesmo de você sair de casa. 💫",
     goal: "Meta: agenda cheia sem anúncio pago",
-    from: "#FFC93D",
-    via: "#FF7A3D",
-    to: "#FF3D77",
   },
   {
     niche: "Consultoria & serviços",
     caption: "Cada gravação vira 10 formatos diferentes de conteúdo.",
     goal: "Meta: pipeline de leads recorrente",
-    from: "#8A3DFF",
-    via: "#3D4EFF",
-    to: "#2FD3B3",
   },
 ] as const;
 
@@ -99,7 +83,7 @@ export function Cases() {
           <span className="block overflow-hidden">
             <span
               data-reveal="line"
-              className="text-gradient block text-[clamp(2.2rem,6.5vw,4.5rem)]"
+              className="block text-[clamp(2.2rem,6.5vw,4.5rem)] text-accent"
               style={{ animationDelay: "0.1s" }}
             >
               parece com você
@@ -128,9 +112,7 @@ export function Cases() {
               <PhoneMock
                 tag={c.niche}
                 caption={c.caption}
-                gradientFrom={c.from}
-                gradientVia={c.via}
-                gradientTo={c.to}
+                tone={TONE_CYCLE[i % TONE_CYCLE.length]}
                 className="max-w-[130px] shrink-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
               />
               <div className="flex flex-col justify-center">

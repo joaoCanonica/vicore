@@ -2,15 +2,15 @@ import { Instagram, ArrowUpRight, Play } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { INSTAGRAM_URL, INSTAGRAM_HANDLE } from "@/lib/links";
 
-const TILE_GRADIENTS = [
-  ["#FF3D77", "#FF7A3D"],
-  ["#8A3DFF", "#FF3D9E"],
-  ["#3DAEFF", "#2FD3B3"],
-  ["#FFC93D", "#FF7A3D"],
-  ["#FF3D77", "#8A3DFF"],
-  ["#2FD3B3", "#3D4EFF"],
-  ["#FF7A3D", "#FFC93D"],
-  ["#3D4EFF", "#FF3D9E"],
+const TILE_TONES = [
+  ["#2b2b2b", "#0a0a0a"],
+  ["#1f1f1f", "#000000"],
+  ["#333333", "#111111"],
+  ["#262626", "#0a0a0a"],
+  ["#2f2f2f", "#0d0d0d"],
+  ["#1a1a1a", "#050505"],
+  ["#303030", "#0a0a0a"],
+  ["#242424", "#000000"],
 ] as const;
 
 function Tile({ from, to }: { from: string; to: string }) {
@@ -29,7 +29,7 @@ function Tile({ from, to }: { from: string; to: string }) {
 
 export function InstagramStrip() {
   const sectionRef = useScrollReveal<HTMLElement>();
-  const tiles = [...TILE_GRADIENTS, ...TILE_GRADIENTS];
+  const tiles = [...TILE_TONES, ...TILE_TONES];
 
   return (
     <section
@@ -40,7 +40,7 @@ export function InstagramStrip() {
       <div className="mb-10 flex flex-col items-center gap-4 px-5 text-center md:mb-14">
         <span
           data-reveal="card"
-          className="reveal-card flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[var(--grad-1)] via-[var(--grad-2)] to-[var(--grad-3)]"
+          className="reveal-card flex h-12 w-12 items-center justify-center rounded-full bg-foreground"
         >
           <Instagram className="h-5 w-5 text-background" strokeWidth={2} />
         </span>

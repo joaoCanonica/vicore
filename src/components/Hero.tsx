@@ -10,17 +10,17 @@ export function Hero() {
       id="top"
       className="relative flex min-h-svh flex-col overflow-hidden pt-24 md:pt-28"
     >
-      {/* Fundo — blobs de gradiente lentos + grão, sem foto de banco */}
+      {/* Fundo — blobs em tons de cinza lentos + grão, sem foto de banco */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-background" />
         <div
-          className="ken-burns absolute -left-[10%] -top-[15%] h-[55vh] w-[55vh] rounded-full opacity-[0.28] blur-[110px]"
-          style={{ background: "radial-gradient(circle, var(--grad-1), transparent 70%)" }}
+          className="ken-burns absolute -left-[10%] -top-[15%] h-[55vh] w-[55vh] rounded-full opacity-[0.14] blur-[110px]"
+          style={{ background: "radial-gradient(circle, #ffffff, transparent 70%)" }}
         />
         <div
-          className="ken-burns absolute -right-[8%] top-[8%] h-[48vh] w-[48vh] rounded-full opacity-[0.22] blur-[110px]"
+          className="ken-burns absolute -right-[8%] top-[8%] h-[48vh] w-[48vh] rounded-full opacity-[0.1] blur-[110px]"
           style={{
-            background: "radial-gradient(circle, var(--grad-3), transparent 70%)",
+            background: "radial-gradient(circle, #ffffff, transparent 70%)",
             animationDelay: "-6s",
           }}
         />
@@ -64,7 +64,7 @@ export function Hero() {
             </span>
             <span className="block overflow-hidden">
               <span
-                className="text-gradient reveal-line block text-[clamp(2.6rem,7.4vw,5.5rem)]"
+                className="reveal-line block text-[clamp(2.6rem,7.4vw,5.5rem)] text-accent"
                 style={{ animationDelay: "0.3s" }}
               >
                 vender mais.
@@ -90,7 +90,7 @@ export function Hero() {
               href={DIAGNOSTIC_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-grad group inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-[13px] font-semibold text-background"
+              className="btn-solid group inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-[13px] font-semibold"
             >
               Quero meu diagnóstico grátis
               <ArrowUpRight

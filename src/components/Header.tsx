@@ -56,7 +56,7 @@ export function Header() {
               href={DIAGNOSTIC_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-grad group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-semibold text-background"
+              className="btn-solid group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-semibold"
             >
               Diagnóstico grátis
               <ArrowUpRight
@@ -119,7 +119,7 @@ export function Header() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
-            className="btn-grad inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-4 text-[13px] font-semibold text-background"
+            className="btn-solid inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-4 text-[13px] font-semibold"
           >
             Diagnóstico grátis
             <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
