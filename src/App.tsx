@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { ThemeProvider } from "@/hooks/use-theme";
 import { Preloader } from "@/components/Preloader";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Header } from "@/components/Header";
@@ -18,20 +19,22 @@ export default function App() {
   const handleIntroReveal = useCallback(() => setIntroReady(true), []);
 
   return (
-    <main className={`bg-background text-foreground${introReady ? " intro-ready" : ""}`}>
-      <Preloader onReveal={handleIntroReveal} />
-      <CustomCursor />
-      <Header />
-      <Hero />
-      <Manifesto />
-      <Services />
-      <Method />
-      <Cases />
-      <Testimonials />
-      <InstagramStrip />
-      <FinalCta />
-      <FloatingWhatsApp />
-      <Footer />
-    </main>
+    <ThemeProvider>
+      <main className={`bg-background text-foreground${introReady ? " intro-ready" : ""}`}>
+        <Preloader onReveal={handleIntroReveal} />
+        <CustomCursor />
+        <Header />
+        <Hero />
+        <Manifesto />
+        <Services />
+        <Method />
+        <Cases />
+        <Testimonials />
+        <InstagramStrip />
+        <FinalCta />
+        <FloatingWhatsApp />
+        <Footer />
+      </main>
+    </ThemeProvider>
   );
 }

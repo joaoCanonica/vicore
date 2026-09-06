@@ -19,7 +19,7 @@ export function FinalCta() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.08] blur-[130px]"
-        style={{ background: "radial-gradient(circle, #ffffff, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, var(--color-foreground), transparent 70%)" }}
       />
 
       <p className="eyebrow reveal-card mb-10" data-reveal="card">

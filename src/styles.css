@@ -6,8 +6,8 @@
 /*
  * VICORE — design system
  * Fiel à marca real: wordmark preto e branco, sem cor nenhuma.
- * Preto absoluto dominante, branco puro, off-white como único
- * "acento" — a mesma lógica bicolor de headline que a Tahon usa.
+ * Tema claro por padrão (a marca abre em branco), com alternância
+ * para um tema escuro opcional salva pelo visitante.
  */
 
 @theme inline {
@@ -36,6 +36,22 @@
 :root {
   --radius: 0.875rem;
 
+  /* Tema claro — o site sempre abre assim */
+  --background: oklch(0.995 0.002 90);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(0.98 0.002 90);
+  --card-foreground: oklch(0.145 0 0);
+  --muted: oklch(0.955 0.002 90);
+  --muted-foreground: oklch(0.44 0 0);
+  /* segunda cor do tratamento bicolor de headlines — cinza-chumbo */
+  --accent: oklch(0.4 0 0);
+  --accent-foreground: oklch(0.995 0.002 90);
+  --border: oklch(0 0 0 / 10%);
+  --ring: oklch(0.145 0 0);
+}
+
+/* Tema escuro — opcional, ativado pelo visitante e salvo entre visitas */
+:root[data-theme="dark"] {
   /* #0A0A0A — preto absoluto da marca */
   --background: oklch(0.145 0 0);
   --foreground: oklch(1 0 0);
@@ -63,12 +79,23 @@
     border-color: var(--color-border);
   }
 
+  html {
+    color-scheme: light;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease;
   }
 
   ::selection {

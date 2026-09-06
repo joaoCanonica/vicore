@@ -1,5 +1,5 @@
-import { ArrowUpRight } from "lucide-react";
-import { PhoneMock } from "./PhoneMock";
+import { ArrowUpRight, Volume2 } from "lucide-react";
+import { VideoShowcase } from "./VideoShowcase";
 import { DIAGNOSTIC_FORM_URL } from "@/lib/links";
 
 const AUDIENCE = ["Médicos & dentistas", "Advogados", "Executivos", "Donos de negócio"];
@@ -14,21 +14,21 @@ export function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-background" />
         <div
-          className="ken-burns absolute -left-[10%] -top-[15%] h-[55vh] w-[55vh] rounded-full opacity-[0.14] blur-[110px]"
-          style={{ background: "radial-gradient(circle, #ffffff, transparent 70%)" }}
+          className="ken-burns absolute -left-[10%] -top-[15%] h-[55vh] w-[55vh] rounded-full opacity-[0.1] blur-[110px]"
+          style={{ background: "radial-gradient(circle, var(--color-foreground), transparent 70%)" }}
         />
         <div
-          className="ken-burns absolute -right-[8%] top-[8%] h-[48vh] w-[48vh] rounded-full opacity-[0.1] blur-[110px]"
+          className="ken-burns absolute -right-[8%] top-[8%] h-[48vh] w-[48vh] rounded-full opacity-[0.07] blur-[110px]"
           style={{
-            background: "radial-gradient(circle, #ffffff, transparent 70%)",
+            background: "radial-gradient(circle, var(--color-foreground), transparent 70%)",
             animationDelay: "-6s",
           }}
         />
         <div
-          className="absolute inset-0 opacity-[0.35]"
+          className="absolute inset-0 opacity-[0.5]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)",
+              "linear-gradient(color-mix(in oklab, var(--color-foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--color-foreground) 6%, transparent) 1px, transparent 1px)",
             backgroundSize: "56px 56px",
             maskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 75%)",
           }}
@@ -121,29 +121,23 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Coluna visual — reels mockup + cards flutuantes */}
+        {/* Coluna visual — vídeo real da Vicore */}
         <div
           className="fade-up relative mx-auto w-full max-w-[300px] md:max-w-none"
           style={{ animationDelay: "0.5s" }}
         >
           <div className="absolute -inset-x-6 -inset-y-10 -z-10 hidden rounded-[3rem] border border-border/60 md:block" />
-          <PhoneMock
-            tag="Reels · Vicore"
-            caption="POV: você grava uma vez e o conteúdo trabalha o mês inteiro. 🎬"
-            className="shadow-[0_40px_120px_-40px_rgba(0,0,0,0.7)]"
+          <VideoShowcase
+            src="/videos/vicore-hero.mp4"
+            poster="/videos/vicore-hero-poster.jpg"
+            className="shadow-[0_40px_120px_-40px_rgba(0,0,0,0.45)]"
           />
 
-          <div className="absolute -left-6 top-10 hidden w-40 -rotate-6 rounded-2xl border border-white/10 bg-card/80 p-4 backdrop-blur-md md:block">
-            <p className="eyebrow mb-1 !text-[9px]">Alcance</p>
-            <p className="font-display text-2xl font-bold text-foreground">+240%</p>
-            <p className="mt-1 text-[11px] text-muted-foreground">em 90 dias</p>
-          </div>
-
-          <div className="absolute -right-4 bottom-16 hidden w-44 rotate-3 rounded-2xl border border-white/10 bg-card/80 p-4 backdrop-blur-md md:block">
-            <p className="eyebrow mb-1 !text-[9px]">Posicionamento</p>
-            <p className="text-[12px] leading-snug text-foreground">
-              "Aprovou na primeira gravação." 🙌
-            </p>
+          <div className="absolute -right-4 -top-4 hidden items-center gap-2 rounded-full border border-border bg-card/90 px-4 py-2 backdrop-blur-md md:flex">
+            <Volume2 className="h-3.5 w-3.5 text-muted-foreground" strokeWidth={1.75} />
+            <span className="text-[11px] font-medium text-muted-foreground">
+              Toque no vídeo pra ativar o som
+            </span>
           </div>
         </div>
       </div>

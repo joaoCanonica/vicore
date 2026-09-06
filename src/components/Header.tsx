@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
 import { DIAGNOSTIC_FORM_URL } from "@/lib/links";
 
 const NAV_LINKS = [
@@ -51,7 +52,8 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden items-center gap-3 md:flex">
+            <ThemeToggle />
             <a
               href={DIAGNOSTIC_FORM_URL}
               target="_blank"
@@ -66,14 +68,17 @@ export function Header() {
             </a>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Abrir menu"
-            className="text-foreground md:hidden"
-          >
-            <Menu className="h-6 w-6" strokeWidth={1.75} />
-          </button>
+          <div className="flex items-center gap-3 md:hidden">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Abrir menu"
+              className="text-foreground"
+            >
+              <Menu className="h-6 w-6" strokeWidth={1.75} />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -86,14 +91,17 @@ export function Header() {
       >
         <div className="flex items-center justify-between px-5 py-4">
           <Logo />
-          <button
-            type="button"
-            onClick={() => setMenuOpen(false)}
-            aria-label="Fechar menu"
-            className="text-foreground"
-          >
-            <X className="h-6 w-6" strokeWidth={1.75} />
-          </button>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Fechar menu"
+              className="text-foreground"
+            >
+              <X className="h-6 w-6" strokeWidth={1.75} />
+            </button>
+          </div>
         </div>
 
         <nav className="flex flex-1 flex-col justify-center gap-1 px-5" aria-label="Menu">
