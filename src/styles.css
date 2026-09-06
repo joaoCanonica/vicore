@@ -1,0 +1,432 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * VICORE — design system
+ * Fiel à marca real: wordmark preto e branco, sem cor nenhuma.
+ * Tema claro por padrão (a marca abre em branco), com alternância
+ * para um tema escuro opcional salva pelo visitante.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 10px);
+  --radius-3xl: calc(var(--radius) + 18px);
+
+  --font-display: "Poppins", "Arial Narrow", sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* Tema claro — o site sempre abre assim */
+  --background: oklch(0.995 0.002 90);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(0.98 0.002 90);
+  --card-foreground: oklch(0.145 0 0);
+  --muted: oklch(0.955 0.002 90);
+  --muted-foreground: oklch(0.44 0 0);
+  /* segunda cor do tratamento bicolor de headlines — cinza-chumbo */
+  --accent: oklch(0.4 0 0);
+  --accent-foreground: oklch(0.995 0.002 90);
+  --border: oklch(0 0 0 / 10%);
+  --ring: oklch(0.145 0 0);
+}
+
+/* Tema escuro — opcional, ativado pelo visitante e salvo entre visitas */
+:root[data-theme="dark"] {
+  /* #0A0A0A — preto absoluto da marca */
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(1 0 0);
+  --card: oklch(0.19 0 0);
+  --card-foreground: oklch(1 0 0);
+  --muted: oklch(0.24 0 0);
+  --muted-foreground: oklch(0.63 0 0);
+  /* off-white — segunda cor do tratamento bicolor de headlines */
+  --accent: oklch(0.915 0.004 95);
+  --accent-foreground: oklch(0.145 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --ring: oklch(0.915 0.004 95);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease;
+  }
+
+  ::selection {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+}
+
+/* ------------------------------- grão de fundo ------------------------------- */
+/* Textura sutil pra tirar a chapadura digital do preto — quase imperceptível,
+   mas evita a leitura "gradiente liso de IA". */
+
+.grain {
+  position: relative;
+  isolation: isolate;
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}
+
+/* ---------------------------------- motion ---------------------------------- */
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.18) translate3d(-1%, -1%, 0);
+  }
+}
+
+@keyframes reveal-line {
+  from {
+    transform: translateY(112%) rotate(0.001deg);
+  }
+  to {
+    transform: translateY(0) rotate(0.001deg);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility ken-burns {
+  animation: ken-burns 22s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
+  will-change: transform;
+}
+
+@utility reveal-line {
+  animation: reveal-line 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform;
+}
+
+@utility fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility scroll-cue-line {
+  animation: scroll-cue 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@utility marquee-track {
+  animation: marquee 34s linear infinite;
+}
+
+/* --------------------------------- typography -------------------------------- */
+
+@utility eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  line-height: 1.9;
+  color: var(--color-muted-foreground);
+}
+
+@utility nav-link {
+  position: relative;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-foreground);
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 1.5px;
+    width: 100%;
+    background: var(--color-foreground);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* ------------------------------- botão-assinatura ------------------------------ */
+/* Sólido branco / texto preto — o único "peso" forte do sistema,
+   reservado pro CTA principal. Tudo mais é contorno (btn-ghost). */
+
+@utility btn-solid {
+  position: relative;
+  background: var(--color-foreground);
+  color: var(--color-background);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@utility btn-ghost {
+  position: relative;
+  border: 1px solid var(--color-border);
+  transition:
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-foreground) 40%, transparent);
+    background-color: color-mix(in oklab, var(--color-foreground) 5%, transparent);
+    transform: translateY(-2px);
+  }
+}
+
+/* card premium — sobe e clareia a borda no hover, sem cor */
+@utility card-edge {
+  position: relative;
+  background: color-mix(in oklab, var(--color-card) 70%, transparent);
+  border: 1px solid var(--color-border);
+  transition:
+    border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    border-color: color-mix(in oklab, var(--color-foreground) 35%, transparent);
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px -24px rgb(0 0 0 / 60%);
+  }
+}
+
+/* ------------------------------- custom cursor ------------------------------- */
+
+.cursor-dot,
+.cursor-ring {
+  display: none;
+}
+
+@media (pointer: fine) {
+  .custom-cursor-on,
+  .custom-cursor-on * {
+    cursor: none;
+  }
+
+  .cursor-dot {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: var(--color-foreground);
+    pointer-events: none;
+  }
+
+  .cursor-ring {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+  }
+
+  .cursor-ring-inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    border: 1px solid color-mix(in oklab, var(--color-foreground) 45%, transparent);
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.35s ease,
+      background-color 0.35s ease;
+  }
+
+  .cursor-ring-active .cursor-ring-inner {
+    transform: scale(1.7);
+    background: color-mix(in oklab, var(--color-foreground) 14%, transparent);
+  }
+}
+
+/* --------------------------------- reveal genérico ---------------------------- */
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.reveal-card {
+  opacity: 0;
+  transform: translateY(2.25rem);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------------- manifesto -------------------------------- */
+
+.manifesto-line {
+  will-change: transform, opacity;
+}
+
+/* ----------------------------------- fab whatsapp ------------------------------ */
+
+.whatsapp-fab {
+  isolation: isolate;
+}
+
+.whatsapp-fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 9999px;
+  background: var(--color-foreground);
+  animation: pulse-ring 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* --------------------------------- preloader ---------------------------------- */
+
+@keyframes preloader-mark {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.preloader-mark {
+  animation: preloader-mark 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+main:not(.intro-ready) #top * {
+  animation-play-state: paused !important;
+}
+
+/* ---------------------------- movimento reduzido ----------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
