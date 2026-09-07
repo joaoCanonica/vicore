@@ -415,6 +415,21 @@
   animation: preloader-mark 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
 }
 
+/* ------------------------------- intro mobile ---------------------------------- */
+
+@keyframes mobile-intro-zoom {
+  from {
+    transform: scale(1.32);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.mobile-intro-video {
+  animation: mobile-intro-zoom 2.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 main:not(.intro-ready) #top * {
   animation-play-state: paused !important;
 }
