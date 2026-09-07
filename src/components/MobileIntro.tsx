@@ -43,21 +43,27 @@ export function MobileIntro() {
   if (!visible || gone) return null;
 
   return (
-    <div
-      aria-hidden="true"
-      className={`fixed inset-0 z-[300] overflow-hidden bg-white transition-opacity ease-out md:hidden ${
-        fading ? "pointer-events-none opacity-0" : "opacity-100"
-      }`}
-      style={{ transitionDuration: `${FADE_OUT_DURATION_MS}ms` }}
-    >
-      <video
-        className="mobile-intro-video h-full w-full object-cover"
-        src="/videos/mobile-intro.mp4"
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-      />
-    </div>
+    <>
+      {/* Trava o scroll enquanto a intro cobre a tela — o Preloader libera
+          o scroll aos 2.35s, bem antes da intro terminar (~4.45s), então
+          essa trava própria evita que o site role por baixo do overlay. */}
+      <style>{"html{overflow:hidden}"}</style>
+      <div
+        aria-hidden="true"
+        className={`fixed inset-0 z-[300] overflow-hidden bg-white transition-opacity ease-out md:hidden ${
+          fading ? "pointer-events-none opacity-0" : "opacity-100"
+        }`}
+        style={{ transitionDuration: `${FADE_OUT_DURATION_MS}ms` }}
+      >
+        <video
+          className="mobile-intro-video h-full w-full object-cover"
+          src="/videos/mobile-intro.mp4"
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+        />
+      </div>
+    </>
   );
 }
