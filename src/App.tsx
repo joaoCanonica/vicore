@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { ThemeProvider } from "@/hooks/use-theme";
+import { MobileIntro } from "@/components/MobileIntro";
 import { Preloader } from "@/components/Preloader";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Header } from "@/components/Header";
@@ -20,6 +21,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <main className={`bg-background text-foreground${introReady ? " intro-ready" : ""}`}>
+        <MobileIntro />
         <Preloader onReveal={handleIntroReveal} />
         <CustomCursor />
         <Header />
