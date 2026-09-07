@@ -7,7 +7,7 @@ import { DIAGNOSTIC_FORM_URL } from "@/lib/links";
 const NAV_LINKS = [
   { label: "Serviços", href: "#servicos" },
   { label: "Método", href: "#metodo" },
-  { label: "Cases", href: "#cases" },
+  { label: "Trabalhos", href: "#trabalhos" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "Contato", href: "#contato" },
 ] as const;
