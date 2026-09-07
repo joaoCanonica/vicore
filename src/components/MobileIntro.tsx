@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 /*
  * Intro exclusiva para mobile — o bumper real da marca (a logo "vicore"
- * animada em preto, extraída do próprio vídeo do CEO) com um zoom-out
+ * extraída do próprio vídeo do CEO, com as cores invertidas para fundo
+ * branco e escrita preta, igual ao Preloader do desktop) com um zoom-out
  * cinematográfico. Roda por cima de tudo (inclusive do Preloader, que
  * segue intocado) e se dissolve ao final, revelando o site já pronto.
  * No desktop este componente não renderiza nada.
@@ -44,7 +45,7 @@ export function MobileIntro() {
   return (
     <div
       aria-hidden="true"
-      className={`fixed inset-0 z-[300] overflow-hidden bg-black transition-opacity ease-out md:hidden ${
+      className={`fixed inset-0 z-[300] overflow-hidden bg-white transition-opacity ease-out md:hidden ${
         fading ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
       style={{ transitionDuration: `${FADE_OUT_DURATION_MS}ms` }}
