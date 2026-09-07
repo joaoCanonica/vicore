@@ -1,24 +1,58 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
  * Vídeo real da Vicore — sem UI falsa por cima (o próprio vídeo já
- * traz legenda e identificação queimadas). Autoplay mudo em loop,
- * com controles mínimos de play/som no canto, estilo player premium.
+ * traz legenda e identificação queimadas). Controles mínimos de
+ * play/som no canto, estilo player premium.
+ *
+ * `autoManage` liga o autoplay/pause ao IntersectionObserver — para
+ * quando o card sai da tela, essencial numa galeria com vários vídeos
+ * ao mesmo tempo (evita 10 vídeos baixando/tocando juntos).
  */
 export function VideoShowcase({
   src,
   poster,
   className = "",
+  autoManage = false,
+  hoverControls = false,
 }: {
   src: string;
   poster?: string;
   className?: string;
+  autoManage?: boolean;
+  hoverControls?: boolean;
 }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(!autoManage);
+
+  useEffect(() => {
+    if (!autoManage) return;
+    const container = containerRef.current;
+    const video = videoRef.current;
+    if (!container || !video) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+            setPlaying(true);
+          } else {
+            video.pause();
+            setPlaying(false);
+          }
+        });
+      },
+      { threshold: 0.55 },
+    );
+
+    io.observe(container);
+    return () => io.disconnect();
+  }, [autoManage]);
 
   const toggleMute = () => {
     const v = videoRef.current;
@@ -41,6 +75,7 @@ export function VideoShowcase({
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "group relative aspect-[9/16] w-full overflow-hidden rounded-[1.75rem] border border-border bg-card",
         className,
@@ -50,7 +85,7 @@ export function VideoShowcase({
         ref={videoRef}
         src={src}
         poster={poster}
-        autoPlay
+        autoPlay={!autoManage}
         muted
         loop
         playsInline
@@ -61,7 +96,12 @@ export function VideoShowcase({
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/10" />
 
-      <div className="absolute bottom-3 right-3 z-10 flex gap-2">
+      <div
+        className={cn(
+          "absolute bottom-3 right-3 z-10 flex gap-2 transition-opacity duration-300",
+          hoverControls && "opacity-0 group-hover:opacity-100 group-focus-within:opacity-100",
+        )}
+      >
         <button
           type="button"
           onClick={togglePlay}

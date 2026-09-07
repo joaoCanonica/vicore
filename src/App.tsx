@@ -7,7 +7,7 @@ import { Hero } from "@/components/Hero";
 import { Manifesto } from "@/components/Manifesto";
 import { Services } from "@/components/Services";
 import { Method } from "@/components/Method";
-import { Cases } from "@/components/Cases";
+import { Work } from "@/components/Work";
 import { Testimonials } from "@/components/Testimonials";
 import { InstagramStrip } from "@/components/InstagramStrip";
 import { FinalCta } from "@/components/FinalCta";
@@ -28,7 +28,7 @@ export default function App() {
         <Manifesto />
         <Services />
         <Method />
-        <Cases />
+        <Work />
         <Testimonials />
         <InstagramStrip />
         <FinalCta />

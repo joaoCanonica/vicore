@@ -99,10 +99,10 @@ export function Hero() {
               />
             </a>
             <a
-              href="#cases"
+              href="#trabalhos"
               className="btn-ghost inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-[13px] font-semibold text-foreground"
             >
-              Ver resultados
+              Ver trabalhos
             </a>
           </div>
 
