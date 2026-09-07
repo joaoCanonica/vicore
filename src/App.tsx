@@ -8,7 +8,6 @@ import { Manifesto } from "@/components/Manifesto";
 import { Services } from "@/components/Services";
 import { Method } from "@/components/Method";
 import { Work } from "@/components/Work";
-import { Testimonials } from "@/components/Testimonials";
 import { InstagramStrip } from "@/components/InstagramStrip";
 import { FinalCta } from "@/components/FinalCta";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
@@ -29,7 +28,6 @@ export default function App() {
         <Services />
         <Method />
         <Work />
-        <Testimonials />
         <InstagramStrip />
         <FinalCta />
         <FloatingWhatsApp />

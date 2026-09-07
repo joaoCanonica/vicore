@@ -1,23 +1,6 @@
 import { useEffect, useRef } from "react";
 import { VideoShowcase } from "./VideoShowcase";
-
-/**
- * Trabalhos reais da Vicore — sem recorte por nicho: o mesmo processo
- * de estratégia, roteiro e edição vale pra qualquer tipo de negócio.
- * Lista pensada pra crescer — é só acrescentar um item aqui.
- */
-const WORKS = [
-  { src: "/videos/work/transservice.mp4", poster: "/videos/work/transservice-poster.jpg" },
-  { src: "/videos/work/backstage-moda.mp4", poster: "/videos/work/backstage-moda-poster.jpg" },
-  { src: "/videos/work/burger.mp4", poster: "/videos/work/burger-poster.jpg" },
-  { src: "/videos/work/grwm-academia.mp4", poster: "/videos/work/grwm-academia-poster.jpg" },
-  { src: "/videos/work/posicionamento.mp4", poster: "/videos/work/posicionamento-poster.jpg" },
-  { src: "/videos/work/nail-designer.mp4", poster: "/videos/work/nail-designer-poster.jpg" },
-  { src: "/videos/work/dra-selfie.mp4", poster: "/videos/work/dra-selfie-poster.jpg" },
-  { src: "/videos/work/polowear.mp4", poster: "/videos/work/polowear-poster.jpg" },
-  { src: "/videos/work/resultado.mp4", poster: "/videos/work/resultado-poster.jpg" },
-  { src: "/videos/work/conteudo-custa.mp4", poster: "/videos/work/conteudo-custa-poster.jpg" },
-] as const;
+import { WORKS } from "@/lib/works";
 
 export function Work() {
   const sectionRef = useRef<HTMLElement>(null);
