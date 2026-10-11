@@ -20,21 +20,26 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <main className={`bg-background text-foreground${introReady ? " intro-ready" : ""}`}>
+      <div
+        data-app-root
+        className={`bg-background text-foreground${introReady ? " intro-ready" : ""}`}
+      >
         <MobileIntro />
         <Preloader onReveal={handleIntroReveal} />
         <CustomCursor />
         <Header />
-        <Hero />
-        <Manifesto />
-        <Services />
-        <Method />
-        <Work />
-        <InstagramStrip />
-        <FinalCta />
+        <main id="conteudo">
+          <Hero />
+          <Manifesto />
+          <Services />
+          <Method />
+          <Work />
+          <InstagramStrip />
+          <FinalCta />
+        </main>
         <FloatingWhatsApp />
         <Footer />
-      </main>
+      </div>
     </ThemeProvider>
   );
 }

@@ -37,6 +37,7 @@ export function Preloader({ onReveal }: { onReveal: () => void }) {
     <>
       <style>{"html{overflow:hidden}"}</style>
       <div
+        data-intro-overlay
         aria-hidden="true"
         className={`fixed inset-0 z-[200] flex items-center justify-center transition-opacity ease-out ${
           fading ? "pointer-events-none opacity-0" : "opacity-100"

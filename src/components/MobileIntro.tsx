@@ -94,6 +94,7 @@ export function MobileIntro() {
           própria evita que o site role por baixo do overlay. */}
       <style>{"html{overflow:hidden}"}</style>
       <div
+        data-intro-overlay
         role="button"
         tabIndex={-1}
         aria-label="Pular introdução"
