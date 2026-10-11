@@ -1,6 +1,6 @@
 import { ArrowUpRight, Instagram } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-import { DIAGNOSTIC_FORM_URL, INSTAGRAM_URL, INSTAGRAM_HANDLE } from "@/lib/links";
+import { diagnosticFormUrl, INSTAGRAM_URL, INSTAGRAM_HANDLE } from "@/lib/links";
 
 export function FinalCta() {
   const sectionRef = useScrollReveal<HTMLElement>();
@@ -70,7 +70,7 @@ export function FinalCta() {
         style={{ transitionDelay: "0.35s" }}
       >
         <a
-          href={DIAGNOSTIC_FORM_URL}
+          href={diagnosticFormUrl("final")}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-solid group inline-flex w-full items-center justify-center gap-2 rounded-full px-10 py-5 text-[13px] font-semibold sm:w-auto"
