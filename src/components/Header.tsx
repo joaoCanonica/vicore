@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
-import { DIAGNOSTIC_FORM_URL } from "@/lib/links";
+import { diagnosticFormUrl } from "@/lib/links";
 
 const NAV_LINKS = [
   { label: "Serviços", href: "#servicos" },
   { label: "Método", href: "#metodo" },
-  { label: "Cases", href: "#cases" },
-  { label: "Depoimentos", href: "#depoimentos" },
+  { label: "Trabalhos", href: "#trabalhos" },
   { label: "Contato", href: "#contato" },
 ] as const;
 
@@ -55,7 +54,7 @@ export function Header() {
           <div className="hidden items-center gap-3 md:flex">
             <ThemeToggle />
             <a
-              href={DIAGNOSTIC_FORM_URL}
+              href={diagnosticFormUrl("header")}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-solid group inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-semibold"
@@ -123,7 +122,7 @@ export function Header() {
 
         <div className="px-5 pb-10">
           <a
-            href={DIAGNOSTIC_FORM_URL}
+            href={diagnosticFormUrl("header")}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}

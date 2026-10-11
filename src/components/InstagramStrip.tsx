@@ -1,35 +1,34 @@
 import { Instagram, ArrowUpRight, Play } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { INSTAGRAM_URL, INSTAGRAM_HANDLE } from "@/lib/links";
+import { WORKS } from "@/lib/works";
 
-const TILE_TONES = [
-  ["#2b2b2b", "#0a0a0a"],
-  ["#1f1f1f", "#000000"],
-  ["#333333", "#111111"],
-  ["#262626", "#0a0a0a"],
-  ["#2f2f2f", "#0d0d0d"],
-  ["#1a1a1a", "#050505"],
-  ["#303030", "#0a0a0a"],
-  ["#242424", "#000000"],
-] as const;
-
-function Tile({ from, to }: { from: string; to: string }) {
+function Tile({ poster }: { poster: string }) {
   return (
-    <div
-      className="relative aspect-square w-[26vw] shrink-0 overflow-hidden rounded-2xl border border-white/10 sm:w-[16vw] md:w-[13vw] lg:w-[10vw]"
-      style={{ background: `linear-gradient(150deg, ${from}, ${to})` }}
+    <a
+      href="#trabalhos"
+      aria-label="Ver esse trabalho na íntegra"
+      className="group relative aspect-square w-[26vw] shrink-0 overflow-hidden rounded-2xl border border-border sm:w-[16vw] md:w-[13vw] lg:w-[10vw]"
     >
-      <div className="grain absolute inset-0" />
-      <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-        <Play className="h-5 w-5 fill-white/90 text-white/90" strokeWidth={0} />
+      <img
+        src={poster}
+        alt=""
+        loading="lazy"
+        className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
+      />
+      <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-500 group-hover:bg-black/35">
+        <Play
+          className="h-5 w-5 fill-white/90 text-white/90 transition-transform duration-500 group-hover:scale-110"
+          strokeWidth={0}
+        />
       </div>
-    </div>
+    </a>
   );
 }
 
 export function InstagramStrip() {
   const sectionRef = useScrollReveal<HTMLElement>();
-  const tiles = [...TILE_TONES, ...TILE_TONES];
+  const tiles = [...WORKS, ...WORKS];
 
   return (
     <section
@@ -69,8 +68,8 @@ export function InstagramStrip() {
 
       <div className="no-scrollbar overflow-hidden">
         <div className="marquee-track flex w-max gap-4 px-5">
-          {tiles.map(([from, to], i) => (
-            <Tile key={i} from={from} to={to} />
+          {tiles.map((work, i) => (
+            <Tile key={`${work.src}-${i}`} poster={work.poster} />
           ))}
         </div>
       </div>

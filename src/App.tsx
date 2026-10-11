@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { ThemeProvider } from "@/hooks/use-theme";
+import { MobileIntro } from "@/components/MobileIntro";
 import { Preloader } from "@/components/Preloader";
 import { CustomCursor } from "@/components/CustomCursor";
 import { Header } from "@/components/Header";
@@ -7,8 +8,7 @@ import { Hero } from "@/components/Hero";
 import { Manifesto } from "@/components/Manifesto";
 import { Services } from "@/components/Services";
 import { Method } from "@/components/Method";
-import { Cases } from "@/components/Cases";
-import { Testimonials } from "@/components/Testimonials";
+import { Work } from "@/components/Work";
 import { InstagramStrip } from "@/components/InstagramStrip";
 import { FinalCta } from "@/components/FinalCta";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
@@ -20,21 +20,26 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <main className={`bg-background text-foreground${introReady ? " intro-ready" : ""}`}>
+      <div
+        data-app-root
+        className={`bg-background text-foreground${introReady ? " intro-ready" : ""}`}
+      >
+        <MobileIntro />
         <Preloader onReveal={handleIntroReveal} />
         <CustomCursor />
         <Header />
-        <Hero />
-        <Manifesto />
-        <Services />
-        <Method />
-        <Cases />
-        <Testimonials />
-        <InstagramStrip />
-        <FinalCta />
+        <main id="conteudo">
+          <Hero />
+          <Manifesto />
+          <Services />
+          <Method />
+          <Work />
+          <InstagramStrip />
+          <FinalCta />
+        </main>
         <FloatingWhatsApp />
         <Footer />
-      </main>
+      </div>
     </ThemeProvider>
   );
 }

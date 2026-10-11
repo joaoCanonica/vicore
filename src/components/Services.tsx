@@ -7,45 +7,9 @@ import {
   PenLine,
   LineChart,
 } from "lucide-react";
+import { SERVICES } from "@/lib/services";
 
-const SERVICES = [
-  {
-    icon: Compass,
-    name: "Estratégia de conteúdo",
-    description:
-      "Diagnóstico do seu momento, do seu público e do que realmente te posiciona antes de gravar qualquer coisa.",
-  },
-  {
-    icon: Clapperboard,
-    name: "Produção de vídeo",
-    description:
-      "Filmagem e edição com padrão editorial — do roteiro ao corte final, prontos pra performar no feed.",
-  },
-  {
-    icon: UserRound,
-    name: "Personal branding",
-    description:
-      "Posicionamos quem lidera o negócio como autoridade — a marca de vídeo mais forte que qualquer anúncio.",
-  },
-  {
-    icon: CalendarClock,
-    name: "Gestão de redes",
-    description:
-      "Calendário editorial, publicação e comunidade cuidados semana a semana, sem depender da sua agenda.",
-  },
-  {
-    icon: PenLine,
-    name: "Copywriting & roteiro",
-    description:
-      "Legendas, roteiros e CTAs escritos pra gerar comentário, salvar e, principalmente, vender.",
-  },
-  {
-    icon: LineChart,
-    name: "Growth & analytics",
-    description:
-      "Métricas lidas de verdade — testamos formatos, ganchos e horários até o que funciona virar rotina.",
-  },
-] as const;
+const ICONS = [Compass, Clapperboard, UserRound, CalendarClock, PenLine, LineChart] as const;
 
 /**
  * Serviços — faixa horizontal com scroll por arraste (mouse) e scroll
@@ -154,7 +118,7 @@ export function Services() {
         className="no-scrollbar mt-12 flex cursor-grab select-none gap-5 overflow-x-auto px-5 pb-4 md:mt-16 md:px-10 [&.is-dragging]:cursor-grabbing"
       >
         {SERVICES.map((service, i) => {
-          const Icon = service.icon;
+          const Icon = ICONS[i];
           return (
             <article
               key={service.name}

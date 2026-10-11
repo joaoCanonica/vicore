@@ -1,10 +1,16 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import "./styles.css";
 
-createRoot(document.getElementById("root")!).render(
+const root = document.getElementById("root")!;
+const app = (
   <StrictMode>
     <App />
-  </StrictMode>,
+  </StrictMode>
 );
+
+// Em produção o HTML já vem pré-renderizado (scripts/prerender.mjs);
+// no `vite dev` o #root chega vazio.
+if (root.hasChildNodes()) hydrateRoot(root, app);
+else createRoot(root).render(app);

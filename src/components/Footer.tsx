@@ -20,7 +20,11 @@ export function Footer() {
           Marketing de conteúdo &amp; posicionamento
         </p>
 
-        <p className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+        {/* Ano do build no HTML pré-renderizado; o cliente pode atualizar sem aviso. */}
+        <p
+          className="text-[11px] uppercase tracking-[0.28em] text-muted-foreground"
+          suppressHydrationWarning
+        >
           © {new Date().getFullYear()} Vicore
         </p>
       </div>
