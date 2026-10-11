@@ -4,7 +4,15 @@
  * Lista pensada pra crescer — é só acrescentar um item aqui. Usada
  * tanto na galeria de vídeos quanto no marquee "veja de perto".
  */
-export const WORKS = [
+export type WorkItem = {
+  src: string;
+  poster: string;
+  /** Opcionais — usados como título/descrição acessível do vídeo quando preenchidos. */
+  title?: string;
+  description?: string;
+};
+
+export const WORKS: readonly WorkItem[] = [
   { src: "/videos/work/transservice.mp4", poster: "/videos/work/transservice-poster.jpg" },
   { src: "/videos/work/backstage-moda.mp4", poster: "/videos/work/backstage-moda-poster.jpg" },
   { src: "/videos/work/burger.mp4", poster: "/videos/work/burger-poster.jpg" },
@@ -20,4 +28,4 @@ export const WORKS = [
   { src: "/videos/work/resultado.mp4", poster: "/videos/work/resultado-poster.jpg" },
   { src: "/videos/work/nail-products.mp4", poster: "/videos/work/nail-products-poster.jpg" },
   { src: "/videos/work/conteudo-custa.mp4", poster: "/videos/work/conteudo-custa-poster.jpg" },
-] as const;
+];

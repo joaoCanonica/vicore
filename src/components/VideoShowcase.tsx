@@ -17,20 +17,28 @@ export function VideoShowcase({
   className = "",
   autoManage = false,
   hoverControls = false,
+  label,
 }: {
   src: string;
   poster?: string;
   className?: string;
   autoManage?: boolean;
   hoverControls?: boolean;
+  /** Título acessível do vídeo (title + aria-label). */
+  label?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(!autoManage);
+  // No HTML pré-renderizado os vídeos saem sem src e sem poster: só
+  // passam a baixar depois da hidratação, como antes do prerender, sem
+  // disputar banda com o primeiro paint.
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
 
   useEffect(() => {
-    if (!autoManage) return;
+    if (!autoManage || !hydrated) return;
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return;
@@ -52,7 +60,7 @@ export function VideoShowcase({
 
     io.observe(container);
     return () => io.disconnect();
-  }, [autoManage]);
+  }, [autoManage, hydrated]);
 
   const toggleMute = () => {
     const v = videoRef.current;
@@ -83,13 +91,15 @@ export function VideoShowcase({
     >
       <video
         ref={videoRef}
-        src={src}
-        poster={poster}
+        src={hydrated ? src : undefined}
+        poster={hydrated ? poster : undefined}
         autoPlay={!autoManage}
         muted
         loop
         playsInline
-        preload="metadata"
+        preload={autoManage ? "none" : "metadata"}
+        title={label}
+        aria-label={label}
         onClick={togglePlay}
         className="h-full w-full cursor-pointer object-cover"
       />

@@ -1,6 +1,6 @@
 import { ArrowUpRight, Volume2 } from "lucide-react";
 import { VideoShowcase } from "./VideoShowcase";
-import { DIAGNOSTIC_FORM_URL } from "@/lib/links";
+import { diagnosticFormUrl } from "@/lib/links";
 
 const AUDIENCE = ["Médicos & dentistas", "Advogados", "Executivos", "Donos de negócio"];
 
@@ -87,7 +87,7 @@ export function Hero() {
             style={{ animationDelay: "0.7s" }}
           >
             <a
-              href={DIAGNOSTIC_FORM_URL}
+              href={diagnosticFormUrl("hero")}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-solid group inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-[13px] font-semibold"
@@ -130,6 +130,7 @@ export function Hero() {
           <VideoShowcase
             src="/videos/vicore-hero.mp4"
             poster="/videos/vicore-hero-poster.jpg"
+            label="Vídeo institucional da Vicore"
             className="shadow-[0_40px_120px_-40px_rgba(0,0,0,0.45)]"
           />
 

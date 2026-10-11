@@ -111,6 +111,7 @@ export function Work() {
         {WORKS.map((work, i) => (
           <article
             key={work.src}
+            title={work.description}
             data-reveal="card"
             className="reveal-card w-[62vw] shrink-0 sm:w-[38vw] md:w-[26vw] lg:w-[19vw]"
             style={{ transitionDelay: `${i * 0.08}s` }}
@@ -119,6 +120,7 @@ export function Work() {
               src={work.src}
               poster={work.poster}
               autoManage
+              label={work.title ?? `Vídeo de trabalho da Vicore, ${i + 1} de ${WORKS.length}`}
               hoverControls
               className="shadow-[0_24px_70px_-32px_rgba(0,0,0,0.4)]"
             />
